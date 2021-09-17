@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="tts-utils">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/tts-utils.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/tts-utils-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
