@@ -11,8 +11,6 @@ import javax.swing.*;
  * Created by JFormDesigner on Wed Sep 15 23:49:21 PDT 2021
  */
 
-
-
 /**
  * @author Emilie
  */
@@ -84,7 +82,16 @@ public class MainForm extends JPanel {
         // TODO add your code here
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(chooser);
-        File file = chooser.getSelectedFile();
+        File file = chooser.getSelectedFile();//select a file
+        if(file == null) {
+            //user cancelled when select
+            return;
+        }
+        if(file.exists() == false){
+            // user didn't select any exist path
+            JOptionPane.showMessageDialog(null, "File does not exists, please select again!", "warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         txtFile.setText(file.getPath());
         try {
             String content = FileUtils.readFileToString(file, "UTF-8");
