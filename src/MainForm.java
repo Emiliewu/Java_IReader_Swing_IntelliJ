@@ -1,8 +1,11 @@
 import javax.swing.event.*;
 import com.imooc.ireader.utils.TTS;
+import org.apache.commons.io.FileUtils;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.*;
 /*
  * Created by JFormDesigner on Wed Sep 15 23:49:21 PDT 2021
@@ -73,13 +76,31 @@ public class MainForm extends JPanel {
         this.doTTS("aisbabyxu");
     }
 
+    private void button2MouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnChooseMouseClicked(MouseEvent e) {
+        // TODO add your code here
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(chooser);
+        File file = chooser.getSelectedFile();
+        txtFile.setText(file.getPath());
+        try {
+            String content = FileUtils.readFileToString(file, "UTF-8");
+            this.areaText.setText(content);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Emilie
         label1 = new JLabel();
-        textField1 = new JTextField();
-        button1 = new JButton();
+        txtFile = new JTextField();
+        btnChoose = new JButton();
         scrollPane1 = new JScrollPane();
         areaText = new JTextArea();
         label2 = new JLabel();
@@ -92,12 +113,12 @@ public class MainForm extends JPanel {
 
         //======== this ========
         setBackground(new Color(51, 51, 51));
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-        EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing
-        . border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ),
-        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () ))
-        throw new RuntimeException( ); }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
+        border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER
+        ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font
+        . BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener(
+        new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r"
+        .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(null);
 
         //---- label1 ----
@@ -107,17 +128,25 @@ public class MainForm extends JPanel {
         add(label1);
         label1.setBounds(45, 40, 50, 24);
 
-        //---- textField1 ----
-        textField1.setBackground(Color.white);
-        add(textField1);
-        textField1.setBounds(110, 35, 605, 35);
+        //---- txtFile ----
+        txtFile.setBackground(Color.white);
+        txtFile.setFont(new Font("Arial", Font.PLAIN, 10));
+        txtFile.setEditable(false);
+        add(txtFile);
+        txtFile.setBounds(110, 35, 605, 35);
 
-        //---- button1 ----
-        button1.setText("submit");
-        button1.setBackground(new Color(8, 145, 224));
-        button1.setForeground(Color.white);
-        add(button1);
-        button1.setBounds(730, 35, 105, 35);
+        //---- btnChoose ----
+        btnChoose.setText("choose a file");
+        btnChoose.setBackground(new Color(8, 145, 224));
+        btnChoose.setForeground(Color.white);
+        btnChoose.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                btnChooseMouseClicked(e);
+            }
+        });
+        add(btnChoose);
+        btnChoose.setBounds(730, 35, 105, 35);
 
         //======== scrollPane1 ========
         {
@@ -162,7 +191,7 @@ public class MainForm extends JPanel {
         btnFemale.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //button2MouseClicked(e);
+                button2MouseClicked(e);
                 btnFemaleMouseClicked(e);
             }
         });
@@ -206,8 +235,8 @@ public class MainForm extends JPanel {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Emilie
     private JLabel label1;
-    private JTextField textField1;
-    private JButton button1;
+    private JTextField txtFile;
+    private JButton btnChoose;
     private JScrollPane scrollPane1;
     private JTextArea areaText;
     private JLabel label2;
