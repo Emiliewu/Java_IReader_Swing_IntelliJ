@@ -17,11 +17,23 @@ import javax.swing.*;
 public class MainForm extends JPanel {
     private int speed = 50;
     private int volumn = 50;
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/images/bg.png"));
+        g.drawImage(icon.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+    }
+
     private void doTTS(String voiceName) {
         // play btnMale
         String text = this.areaText.getText();
         if(text.trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "cannot be empty", "warnning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if(text.trim().length() > 1000 ){
+            JOptionPane.showMessageDialog(null, "cannot be more than 1000 charactors", "warnning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         TTS tts = new TTS();
@@ -83,6 +95,7 @@ public class MainForm extends JPanel {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(chooser);
         File file = chooser.getSelectedFile();//select a file
+        // validation for user inputs
         if(file == null) {
             //user cancelled when select
             return;
@@ -120,12 +133,12 @@ public class MainForm extends JPanel {
 
         //======== this ========
         setBackground(new Color(51, 51, 51));
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
-        border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER
-        ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font
-        . BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener(
-        new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r"
-        .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
+        ( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+        . TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
+        propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
+        ; }} );
         setLayout(null);
 
         //---- label1 ----
@@ -140,7 +153,7 @@ public class MainForm extends JPanel {
         txtFile.setFont(new Font("Arial", Font.PLAIN, 10));
         txtFile.setEditable(false);
         add(txtFile);
-        txtFile.setBounds(110, 35, 605, 35);
+        txtFile.setBounds(110, 35, 540, 35);
 
         //---- btnChoose ----
         btnChoose.setText("choose a file");
@@ -153,7 +166,7 @@ public class MainForm extends JPanel {
             }
         });
         add(btnChoose);
-        btnChoose.setBounds(730, 35, 105, 35);
+        btnChoose.setBounds(670, 35, 165, 35);
 
         //======== scrollPane1 ========
         {
@@ -161,6 +174,7 @@ public class MainForm extends JPanel {
             //---- areaText ----
             areaText.setBackground(Color.white);
             areaText.setFont(new Font("Calibri Light", Font.PLAIN, 32));
+            areaText.setLineWrap(true);
             scrollPane1.setViewportView(areaText);
         }
         add(scrollPane1);
