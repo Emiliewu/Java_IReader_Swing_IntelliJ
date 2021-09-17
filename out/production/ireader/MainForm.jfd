@@ -75,7 +75,8 @@ new FormModel {
 				"y": 505
 			} )
 			add( new FormComponent( "javax.swing.JSlider" ) {
-				name: "slider1"
+				name: "sldSpeed"
+				addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "sldSpeedStateChanged", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 220
 				"y": 475
@@ -83,7 +84,8 @@ new FormModel {
 				"height": 24
 			} )
 			add( new FormComponent( "javax.swing.JSlider" ) {
-				name: "slider2"
+				name: "sldVolumn"
+				addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "sldVolumnStateChanged", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 530
 				"height": 24
@@ -91,11 +93,13 @@ new FormModel {
 				"y": 510
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button2"
+				name: "btnFemale"
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/images/btn_female.png" )
 				"background": &Color0 new java.awt.Color( 255, 255, 255, 255 )
 				"opaque": false
 				"borderPainted": false
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "button2MouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnFemaleMouseClicked", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 400
 				"y": 570
@@ -103,12 +107,13 @@ new FormModel {
 				"height": 100
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button3"
+				name: "btnHenan"
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/images/btn_henan.png" )
 				"background": #Color0
 				"foreground": new java.awt.Color( 255, 255, 255, 255 )
 				"opaque": false
 				"borderPainted": false
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnHenanMouseClicked", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 100
 				"height": 100

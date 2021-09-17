@@ -162,7 +162,7 @@ public class MainForm extends JPanel {
         btnFemale.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                button2MouseClicked(e);
+                //button2MouseClicked(e);
                 btnFemaleMouseClicked(e);
             }
         });
